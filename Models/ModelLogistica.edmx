@@ -1,0 +1,2734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CDLogisticaAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Aplicaciones">
+          <Key>
+            <PropertyRef Name="IdAplicacion" />
+          </Key>
+          <Property Name="IdAplicacion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="fechaRegistro" Type="datetime" />
+          <Property Name="esVisible" Type="bit" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="esActivo" Type="bit" />
+          <Property Name="Source" Type="nvarchar" MaxLength="20" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Catalogos">
+          <Key>
+            <PropertyRef Name="idCatalogo" />
+          </Key>
+          <Property Name="idCatalogo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomCatalogo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nomVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="txtDescripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="tipoDato" Type="varchar" MaxLength="10" />
+          <Property Name="valorAsociado" Type="bigint" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="esJerarquico" Type="bit" Nullable="false" />
+          <Property Name="esExtendido" Type="bit" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="idEmpresa" Type="bigint" />
+          <Property Name="esEditable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogosElementos">
+          <Key>
+            <PropertyRef Name="idElemento" />
+          </Key>
+          <Property Name="idElemento" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idCatalogo" Type="bigint" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="250" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="250" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="valorAsociado" Type="bigint" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="30" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="esEditable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogosElementosExt">
+          <Key>
+            <PropertyRef Name="idElementoExt" />
+          </Key>
+          <Property Name="idElementoExt" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCatalogoElemento" Type="bigint" Nullable="false" />
+          <Property Name="campo1" Type="varchar" MaxLength="50" />
+          <Property Name="campo2" Type="varchar" MaxLength="50" />
+          <Property Name="campo3" Type="varchar" MaxLength="50" />
+          <Property Name="campo4" Type="varchar" MaxLength="50" />
+          <Property Name="campo5" Type="varchar" MaxLength="50" />
+          <Property Name="campo6" Type="varchar" MaxLength="200" />
+          <Property Name="campo7" Type="varchar" MaxLength="200" />
+          <Property Name="campo8" Type="varchar" MaxLength="200" />
+          <Property Name="campo9" Type="varchar" MaxLength="200" />
+          <Property Name="campo10" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="configInterfaz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVentana" Type="nvarchar(max)" />
+          <Property Name="nomComponente" Type="nvarchar(max)" />
+          <Property Name="tipoDato" Type="nvarchar(max)" />
+          <Property Name="origenDato" Type="nvarchar(max)" />
+          <Property Name="nombreFuente" Type="nvarchar(max)" />
+          <Property Name="valorInicial" Type="nvarchar(max)" />
+          <Property Name="esActivo" Type="bit" />
+          <Property Name="mostrarComponente" Type="bit" />
+          <Property Name="etiquetaVisible" Type="nvarchar(max)" />
+          <Property Name="campoObligatorio" Type="bit" Nullable="false" />
+          <Property Name="tipoComponente" Type="nvarchar(max)" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_bitacoraGeneral">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="tabla_SP_vista" Type="varchar" MaxLength="60" />
+          <Property Name="operacion" Type="varchar" MaxLength="100" />
+          <Property Name="IdRegistroAfectado" Type="bigint" />
+          <Property Name="IdUsuario" Type="bigint" />
+          <Property Name="txtDetalle1" Type="varchar" MaxLength="255" />
+          <Property Name="txtDetalle2" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LOG_bitacoraSesiones">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSesion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="operacion" Type="varchar" MaxLength="100" />
+          <Property Name="IdUsuarioAfectado" Type="bigint" />
+          <Property Name="txtDetalle1" Type="varchar" MaxLength="255" />
+          <Property Name="txtDetalle2" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LOG_Errores">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="modulo" Type="varchar" MaxLength="100" />
+          <Property Name="txtDetalle1" Type="varchar" MaxLength="255" />
+          <Property Name="txtDetalle2" Type="varchar" MaxLength="255" />
+          <Property Name="txtDetalle3" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="idParametro" />
+          </Key>
+          <Property Name="idParametro" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idModulo" Type="bigint" />
+          <Property Name="nomParametro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="tipoDato" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="rangoValorSerie" Type="varchar" MaxLength="10" />
+          <Property Name="valor1" Type="varchar" MaxLength="50" />
+          <Property Name="valor2" Type="varchar" MaxLength="50" />
+          <Property Name="observaciones" Type="varchar" MaxLength="100" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="numClasificador" Type="int" Nullable="false" />
+          <Property Name="txtClasificador" Type="varchar" MaxLength="15" />
+          <Property Name="numClasificador2" Type="int" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Source" Type="nvarchar" MaxLength="20" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="10" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="esActivo" Type="smallint" Nullable="false" />
+          <Property Name="LastDirectoryUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ActividadAdjuntos">
+          <Key>
+            <PropertyRef Name="idAdjunto" />
+          </Key>
+          <Property Name="idAdjunto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreArchivo" Type="nvarchar" MaxLength="1024" />
+          <Property Name="idActividadPuerta" Type="bigint" />
+          <Property Name="idActividadPatio" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ActividadInstantanea">
+          <Key>
+            <PropertyRef Name="idInstantanea" />
+          </Key>
+          <Property Name="idInstantanea" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCamara" Type="bigint" />
+          <Property Name="NombreArchivo" Type="nvarchar" MaxLength="1024" />
+          <Property Name="idActividadPuerta" Type="bigint" />
+          <Property Name="idActividadPatio" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ActividadPatio">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoActividad" Type="bigint" />
+          <Property Name="idTipoUnidad" Type="bigint" />
+          <Property Name="idOperador" Type="bigint" />
+          <Property Name="idTransportista" Type="bigint" />
+          <Property Name="idUnidad" Type="bigint" />
+          <Property Name="idPatio" Type="bigint" Nullable="false" />
+          <Property Name="idSector" Type="bigint" Nullable="false" />
+          <Property Name="idNivel" Type="bigint" Nullable="false" />
+          <Property Name="idCajon" Type="bigint" Nullable="false" />
+          <Property Name="codigoQR" Type="nvarchar" MaxLength="1024" />
+          <Property Name="codigoBarras" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="valor1" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor2" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor3" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor4" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor5" Type="nvarchar" MaxLength="100" />
+          <Property Name="clave1" Type="bigint" />
+          <Property Name="clave2" Type="bigint" />
+          <Property Name="clave3" Type="bigint" />
+          <Property Name="clave4" Type="bigint" />
+          <Property Name="clave5" Type="bigint" />
+          <Property Name="dato1" Type="float" />
+          <Property Name="dato2" Type="float" />
+          <Property Name="fecha1" Type="datetime" />
+          <Property Name="fecha2" Type="datetime" />
+          <Property Name="fecha3" Type="datetime" />
+          <Property Name="bolExtendido" Type="bit" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ActividadPuerta">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoActividad" Type="bigint" />
+          <Property Name="idActividadPatio" Type="bigint" />
+          <Property Name="idTipoUnidad" Type="bigint" />
+          <Property Name="idModoAsignacion" Type="bigint" />
+          <Property Name="idTarifa" Type="bigint" />
+          <Property Name="idPuerta" Type="bigint" />
+          <Property Name="idOperadorRegistro" Type="bigint" />
+          <Property Name="idUnidad" Type="bigint" />
+          <Property Name="idTransportista" Type="bigint" />
+          <Property Name="codigoQR" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoBarras" Type="nvarchar" MaxLength="30" />
+          <Property Name="nota" Type="nvarchar" MaxLength="50" />
+          <Property Name="clave" Type="nvarchar" MaxLength="20" />
+          <Property Name="fechaActividad" Type="datetime2" Precision="7" />
+          <Property Name="idInspector" Type="bigint" />
+          <Property Name="fechaInspeccion" Type="datetime" />
+          <Property Name="booking" Type="nvarchar" MaxLength="20" />
+          <Property Name="cargoA" Type="bigint" />
+          <Property Name="idCompaniaOperadora" Type="bigint" />
+          <Property Name="idLugarInicio" Type="bigint" />
+          <Property Name="idLugarDestino" Type="bigint" />
+          <Property Name="idOperadora_conductor" Type="bigint" />
+          <Property Name="numPlaca" Type="nvarchar" MaxLength="20" />
+          <Property Name="numLicencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="idCompania" Type="bigint" />
+          <Property Name="condicionUnidad" Type="nvarchar" MaxLength="50" />
+          <Property Name="costoNormal" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="porcentajeDescuento" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="numAprobacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="idImpuestosAplicables" Type="bigint" />
+          <Property Name="montoImpuestos" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="idMoneda" Type="bigint" />
+          <Property Name="numUnidadAlterna" Type="nvarchar" MaxLength="50" />
+          <Property Name="enviarEDI" Type="bit" />
+          <Property Name="propietarioPatio" Type="nvarchar" MaxLength="50" />
+          <Property Name="arrendatarioPatio" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalFactura" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="numEDI" Type="nvarchar" MaxLength="50" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="bolExtendido" Type="bit" />
+          <Property Name="valor1" Type="bigint" />
+          <Property Name="valor2" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor3" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor4" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor5" Type="nvarchar" MaxLength="100" />
+          <Property Name="clave1" Type="bigint" />
+          <Property Name="clave2" Type="bigint" />
+          <Property Name="clave3" Type="bigint" />
+          <Property Name="clave4" Type="bigint" />
+          <Property Name="clave5" Type="bigint" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="rutaBoleto" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ActividadVideo">
+          <Key>
+            <PropertyRef Name="idVideo" />
+          </Key>
+          <Property Name="idVideo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCamara" Type="bigint" />
+          <Property Name="NombreArchivo" Type="nvarchar" MaxLength="1024" />
+          <Property Name="idActividadPuerta" Type="bigint" />
+          <Property Name="idActividadPatio" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Cajones">
+          <Key>
+            <PropertyRef Name="idCajon" />
+          </Key>
+          <Property Name="idCajon" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="20" />
+          <Property Name="numCajon" Type="bigint" />
+          <Property Name="idNivel" Type="bigint" />
+          <Property Name="idEstatus" Type="bigint" />
+          <Property Name="valorAsociado1" Type="bigint" />
+          <Property Name="valorAsociado2" Type="bigint" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="ordenVisual" Type="int" />
+        </EntityType>
+        <EntityType Name="Camaras">
+          <Key>
+            <PropertyRef Name="idCamara" />
+          </Key>
+          <Property Name="idCamara" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="config1" Type="nvarchar" MaxLength="255" />
+          <Property Name="config2" Type="nvarchar" MaxLength="255" />
+          <Property Name="config3" Type="nvarchar" MaxLength="255" />
+          <Property Name="clave1" Type="bigint" />
+          <Property Name="clave2" Type="bigint" />
+          <Property Name="clave3" Type="bigint" />
+          <Property Name="clave4" Type="bigint" />
+          <Property Name="clave5" Type="bigint" />
+          <Property Name="clave6" Type="bigint" />
+          <Property Name="clave7" Type="bigint" />
+          <Property Name="clave8" Type="bigint" />
+          <Property Name="clave9" Type="bigint" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="configInterfaz1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVentana" Type="varchar" MaxLength="50" />
+          <Property Name="nomComponente" Type="varchar" MaxLength="50" />
+          <Property Name="tipoDato" Type="varchar" MaxLength="20" />
+          <Property Name="origenDato" Type="varchar" MaxLength="50" />
+          <Property Name="nombreFuente" Type="varchar" MaxLength="50" />
+          <Property Name="valorInicial" Type="varchar" MaxLength="20" />
+          <Property Name="esActivo" Type="bit" />
+          <Property Name="mostrarComponente" Type="bit" />
+          <Property Name="etiquetaVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="campoObligatorio" Type="bit" Nullable="false" />
+          <Property Name="tipoComponente" Type="varchar" MaxLength="20" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_errores1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" />
+          <Property Name="Level" Type="nvarchar" MaxLength="100" />
+          <Property Name="logger" Type="nvarchar" MaxLength="100" />
+          <Property Name="Message" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="Exception" Type="nvarchar" MaxLength="1024" />
+          <Property Name="StackTrace" Type="nvarchar" MaxLength="2048" />
+        </EntityType>
+        <EntityType Name="Niveles">
+          <Key>
+            <PropertyRef Name="idNivel" />
+          </Key>
+          <Property Name="idNivel" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="numCajones" Type="int" />
+          <Property Name="valorAsociado" Type="bigint" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="idSector" Type="bigint" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patios">
+          <Key>
+            <PropertyRef Name="idPatio" />
+          </Key>
+          <Property Name="idPatio" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="20" />
+          <Property Name="valorAsociado" Type="bigint" />
+          <Property Name="idPropietario" Type="bigint" />
+          <Property Name="idArrendador" Type="bigint" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonasFisicas">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPerfilProfesional" Type="bigint" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="50" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="20" />
+          <Property Name="repositorioFoto" Type="nvarchar" MaxLength="100" />
+          <Property Name="domicilio" Type="nvarchar" MaxLength="255" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonasMorales">
+          <Key>
+            <PropertyRef Name="idPersonaMoral" />
+          </Key>
+          <Property Name="idPersonaMoral" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="50" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="100" />
+          <Property Name="paginaweb" Type="nvarchar" MaxLength="100" />
+          <Property Name="contacto" Type="nvarchar" MaxLength="255" />
+          <Property Name="comentarios" Type="nvarchar" MaxLength="255" />
+          <Property Name="idNivelSuperior" Type="bigint" />
+          <Property Name="esActivo" Type="bit" />
+          <Property Name="esCliente" Type="bit" />
+          <Property Name="esProveedor" Type="bit" />
+          <Property Name="idEmpresa" Type="bigint" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puertas">
+          <Key>
+            <PropertyRef Name="idPuerta" />
+          </Key>
+          <Property Name="idPuerta" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="clave1" Type="bigint" />
+          <Property Name="clave2" Type="bigint" />
+          <Property Name="clave3" Type="bigint" />
+          <Property Name="clave4" Type="bigint" />
+          <Property Name="clave5" Type="bigint" />
+          <Property Name="clave6" Type="bigint" />
+          <Property Name="clave7" Type="bigint" />
+          <Property Name="clave8" Type="bigint" />
+          <Property Name="clave9" Type="bigint" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Sectores">
+          <Key>
+            <PropertyRef Name="idSector" />
+          </Key>
+          <Property Name="idSector" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="50" />
+          <Property Name="claveTexto" Type="nvarchar" MaxLength="50" />
+          <Property Name="valorAsociado" Type="bigint" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="1" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuarioRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="idPatio" Type="bigint" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="esActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarifas">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipo1" Type="bigint" />
+          <Property Name="nomTarifa" Type="nvarchar" MaxLength="50" />
+          <Property Name="idMoneda" Type="bigint" />
+          <Property Name="valorAsociado1" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado2" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado3" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado4" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="idTipo2" Type="bigint" />
+          <Property Name="idEmpresa" Type="bigint" />
+          <Property Name="idClasificador1" Type="bigint" />
+          <Property Name="idClasificador2" Type="bigint" />
+          <Property Name="esActivo" Type="bit" />
+          <Property Name="idEstatus" Type="bigint" />
+          <Property Name="esVigente" Type="bit" />
+          <Property Name="ordenVisual" Type="int" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Unidades">
+          <Key>
+            <PropertyRef Name="idUnidad" />
+          </Key>
+          <Property Name="idUnidad" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipo3" Type="bigint" />
+          <Property Name="nomUnidad" Type="nvarchar" MaxLength="25" />
+          <Property Name="numUnidad" Type="bigint" />
+          <Property Name="clasificador1" Type="nvarchar" MaxLength="15" />
+          <Property Name="clasificador2" Type="nvarchar" MaxLength="15" />
+          <Property Name="idTipo2" Type="bigint" />
+          <Property Name="idPropietario" Type="bigint" />
+          <Property Name="idArrendador" Type="bigint" />
+          <Property Name="valorAsociado1" Type="nvarchar" MaxLength="50" />
+          <Property Name="CeCo" Type="nvarchar" MaxLength="1" />
+          <Property Name="idEstatusUnidad" Type="bigint" />
+          <Property Name="modelo" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaInicialServicio" Type="datetime" />
+          <Property Name="idUbicacionFisica" Type="bigint" />
+          <Property Name="montoLimiteReparacion" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="idTipo1" Type="bigint" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="idUsuarioModificacion" Type="bigint" />
+          <Property Name="esVisible" Type="bit" Nullable="false" />
+          <Property Name="idEstatus" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwActividadesPuerta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vwActividadesPuerta">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="bigint" Nullable="false" />
+          <Property Name="idTipoActividad" Type="bigint" />
+          <Property Name="tipoActividad" Type="nvarchar" MaxLength="250" />
+          <Property Name="idTipoUnidad" Type="bigint" />
+          <Property Name="tipoUnidad" Type="nvarchar" MaxLength="250" />
+          <Property Name="idModoAsignacion" Type="bigint" />
+          <Property Name="modoAsignacion" Type="nvarchar" MaxLength="250" />
+          <Property Name="idTarifa" Type="bigint" />
+          <Property Name="tarifa" Type="nvarchar" MaxLength="250" />
+          <Property Name="idPuerta" Type="bigint" />
+          <Property Name="puerta" Type="nvarchar" MaxLength="50" />
+          <Property Name="nota" Type="nvarchar" MaxLength="50" />
+          <Property Name="clave" Type="nvarchar" MaxLength="20" />
+          <Property Name="fechaActividad" Type="datetime2" Precision="7" />
+          <Property Name="costoNormal" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="idUsuarioRegistro" Type="bigint" />
+          <Property Name="usuarioRegistro" Type="nvarchar" MaxLength="100" />
+          <Property Name="rutaBoleto" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_status' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vwPatiosCajones_status">
+          <Key>
+            <PropertyRef Name="idPatio" />
+            <PropertyRef Name="estatusPatio" />
+            <PropertyRef Name="idSector" />
+            <PropertyRef Name="estatusSector" />
+            <PropertyRef Name="idNivel" />
+            <PropertyRef Name="estatusNivel" />
+          </Key>
+          <Property Name="idPatio" Type="bigint" Nullable="false" />
+          <Property Name="clavePatio" Type="nvarchar" MaxLength="20" />
+          <Property Name="estatusPatio" Type="bigint" Nullable="false" />
+          <Property Name="idPropietario" Type="bigint" />
+          <Property Name="idSector" Type="bigint" Nullable="false" />
+          <Property Name="claveSector" Type="nvarchar" MaxLength="50" />
+          <Property Name="estatusSector" Type="bigint" Nullable="false" />
+          <Property Name="idNivel" Type="bigint" Nullable="false" />
+          <Property Name="claveNivel" Type="nvarchar" MaxLength="50" />
+          <Property Name="estatusNivel" Type="bigint" Nullable="false" />
+          <Property Name="numCajones" Type="int" />
+          <Property Name="claveCajon" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreVisible" Type="nvarchar" MaxLength="20" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="idCajon" Type="bigint" />
+          <Property Name="estatusCajon" Type="bigint" />
+          <Property Name="numCajon" Type="bigint" />
+          <Property Name="valorAsociado1" Type="bigint" />
+          <Property Name="valorAsociado2" Type="bigint" />
+          <Property Name="nomEstatusCajon" Type="nvarchar" MaxLength="250" />
+          <Property Name="nomVisibleEstatusCajon" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Catalogo01">
+          <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="1" />
+          <End Role="CatalogosElementos" Type="Self.CatalogosElementos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogos">
+              <PropertyRef Name="idCatalogo" />
+            </Principal>
+            <Dependent Role="CatalogosElementos">
+              <PropertyRef Name="idCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elemento01">
+          <End Role="CatalogosElementos" Type="Self.CatalogosElementos" Multiplicity="1" />
+          <End Role="CatalogosElementosExt" Type="Self.CatalogosElementosExt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogosElementos">
+              <PropertyRef Name="idElemento" />
+            </Principal>
+            <Dependent Role="CatalogosElementosExt">
+              <PropertyRef Name="idCatalogoElemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spCatalogoElementos_ObtenerListadoSimple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreCatalogo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fnNiveles_NumCajonesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica" ReturnType="int">
+          <Parameter Name="IdNivel" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="fnSectores_NumNivelesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica" ReturnType="int">
+          <Parameter Name="IdSector" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spCamaras_ObtenerListadoSimple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdPuerta" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spNiveles_DisponibilidadCajonesListadoHTML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdSector" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spNiveles_DisponibilidadCajonesListadoSimple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdNivel" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spPatios_DisponibilidadSectoresListadoHTML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdPatio" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spPuertas_ObtenerListadoSimple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdPatio" Type="bigint" Mode="In" />
+          <Parameter Name="IdSector" Type="bigint" Mode="In" />
+          <Parameter Name="IdNivel" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spPuertas_ObtenerReporteGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spSectores_DisponibilidadNiveles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdSector" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="spSectores_DisponibilidadNivelesListadoHTML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="logistica">
+          <Parameter Name="IdPatio" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="CDLogisticaAModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aplicaciones" EntityType="Self.Aplicaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalogos" EntityType="Self.Catalogos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogosElementos" EntityType="Self.CatalogosElementos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogosElementosExt" EntityType="Self.CatalogosElementosExt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="configInterfaz" EntityType="Self.configInterfaz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_bitacoraGeneral" EntityType="Self.LOG_bitacoraGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_bitacoraSesiones" EntityType="Self.LOG_bitacoraSesiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOG_Errores" EntityType="Self.LOG_Errores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActividadAdjuntos" EntityType="Self.ActividadAdjuntos" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="ActividadInstantanea" EntityType="Self.ActividadInstantanea" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="ActividadPatio" EntityType="Self.ActividadPatio" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="ActividadPuerta" EntityType="Self.ActividadPuerta" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="ActividadVideo" EntityType="Self.ActividadVideo" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Cajones" EntityType="Self.Cajones" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Camaras" EntityType="Self.Camaras" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="configInterfaz1" EntityType="Self.configInterfaz1" Schema="logistica" Table="configInterfaz" store:Type="Tables" />
+          <EntitySet Name="LOG_errores1" EntityType="Self.LOG_errores1" Schema="logistica" Table="LOG_errores" store:Type="Tables" />
+          <EntitySet Name="Niveles" EntityType="Self.Niveles" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Patios" EntityType="Self.Patios" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="PersonasFisicas" EntityType="Self.PersonasFisicas" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="PersonasMorales" EntityType="Self.PersonasMorales" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Puertas" EntityType="Self.Puertas" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Sectores" EntityType="Self.Sectores" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Tarifas" EntityType="Self.Tarifas" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="Unidades" EntityType="Self.Unidades" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="vwActividadesPuerta" EntityType="Self.vwActividadesPuerta" store:Type="Views" store:Schema="logistica">
+            <DefiningQuery>SELECT 
+    [vwActividadesPuerta].[idActividad] AS [idActividad], 
+    [vwActividadesPuerta].[idTipoActividad] AS [idTipoActividad], 
+    [vwActividadesPuerta].[tipoActividad] AS [tipoActividad], 
+    [vwActividadesPuerta].[idTipoUnidad] AS [idTipoUnidad], 
+    [vwActividadesPuerta].[tipoUnidad] AS [tipoUnidad], 
+    [vwActividadesPuerta].[idModoAsignacion] AS [idModoAsignacion], 
+    [vwActividadesPuerta].[modoAsignacion] AS [modoAsignacion], 
+    [vwActividadesPuerta].[idTarifa] AS [idTarifa], 
+    [vwActividadesPuerta].[tarifa] AS [tarifa], 
+    [vwActividadesPuerta].[idPuerta] AS [idPuerta], 
+    [vwActividadesPuerta].[puerta] AS [puerta], 
+    [vwActividadesPuerta].[nota] AS [nota], 
+    [vwActividadesPuerta].[clave] AS [clave], 
+    [vwActividadesPuerta].[fechaActividad] AS [fechaActividad], 
+    [vwActividadesPuerta].[costoNormal] AS [costoNormal], 
+    [vwActividadesPuerta].[idUsuarioRegistro] AS [idUsuarioRegistro], 
+    [vwActividadesPuerta].[usuarioRegistro] AS [usuarioRegistro], 
+    [vwActividadesPuerta].[rutaBoleto] AS [rutaBoleto]
+    FROM [logistica].[vwActividadesPuerta] AS [vwActividadesPuerta]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPatiosCajones_status" EntityType="Self.vwPatiosCajones_status" store:Type="Views" store:Schema="logistica">
+            <DefiningQuery>SELECT 
+    [vwPatiosCajones_status].[idPatio] AS [idPatio], 
+    [vwPatiosCajones_status].[clavePatio] AS [clavePatio], 
+    [vwPatiosCajones_status].[estatusPatio] AS [estatusPatio], 
+    [vwPatiosCajones_status].[idPropietario] AS [idPropietario], 
+    [vwPatiosCajones_status].[idSector] AS [idSector], 
+    [vwPatiosCajones_status].[claveSector] AS [claveSector], 
+    [vwPatiosCajones_status].[estatusSector] AS [estatusSector], 
+    [vwPatiosCajones_status].[idNivel] AS [idNivel], 
+    [vwPatiosCajones_status].[claveNivel] AS [claveNivel], 
+    [vwPatiosCajones_status].[estatusNivel] AS [estatusNivel], 
+    [vwPatiosCajones_status].[numCajones] AS [numCajones], 
+    [vwPatiosCajones_status].[claveCajon] AS [claveCajon], 
+    [vwPatiosCajones_status].[nombreVisible] AS [nombreVisible], 
+    [vwPatiosCajones_status].[fechaModificacion] AS [fechaModificacion], 
+    [vwPatiosCajones_status].[idCajon] AS [idCajon], 
+    [vwPatiosCajones_status].[estatusCajon] AS [estatusCajon], 
+    [vwPatiosCajones_status].[numCajon] AS [numCajon], 
+    [vwPatiosCajones_status].[valorAsociado1] AS [valorAsociado1], 
+    [vwPatiosCajones_status].[valorAsociado2] AS [valorAsociado2], 
+    [vwPatiosCajones_status].[nomEstatusCajon] AS [nomEstatusCajon], 
+    [vwPatiosCajones_status].[nomVisibleEstatusCajon] AS [nomVisibleEstatusCajon]
+    FROM [logistica].[vwPatiosCajones_status] AS [vwPatiosCajones_status]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Catalogo01" Association="Self.FK_Catalogo01">
+            <End Role="Catalogos" EntitySet="Catalogos" />
+            <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elemento01" Association="Self.FK_Elemento01">
+            <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
+            <End Role="CatalogosElementosExt" EntitySet="CatalogosElementosExt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CDLogisticaAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CDLogisticaAEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spCatalogoElementos_ObtenerListadoSimple" ReturnType="Collection(CDLogisticaAModel.spCatalogoElementos_ObtenerListadoSimple_Result)">
+          <Parameter Name="NombreCatalogo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spCamaras_ObtenerListadoSimple" ReturnType="Collection(CDLogisticaAModel.spCamaras_ObtenerListadoSimple_Result)">
+          <Parameter Name="IdPuerta" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spPuertas_ObtenerListadoSimple" ReturnType="Collection(CDLogisticaAModel.spPuertas_ObtenerListadoSimple_Result)">
+            <Parameter Name="IdPatio" Mode="In" Type="Int64" />
+            <Parameter Name="IdSector" Mode="In" Type="Int64" />
+            <Parameter Name="IdNivel" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spNiveles_DisponibilidadCajonesListadoSimple" ReturnType="Collection(CDLogisticaAModel.spNiveles_DisponibilidadCajonesListadoSimple_Result)">
+          <Parameter Name="IdNivel" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spPatios_DisponibilidadSectores" ReturnType="Collection(CDLogisticaAModel.spPatios_DisponibilidadSectores_Result)">
+          <Parameter Name="IdPatio" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spSectores_DisponibilidadNiveles" ReturnType="Collection(CDLogisticaAModel.spSectores_DisponibilidadNiveles_Result)">
+          <Parameter Name="IdSector" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spNiveles_DisponibilidadCajonesListadoHTML" ReturnType="Collection(CDLogisticaAModel.spNiveles_DisponibilidadCajonesListadoHTML_Result)">
+          <Parameter Name="IdSector" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spSectores_DisponibilidadNivelesListadoHTML" ReturnType="Collection(CDLogisticaAModel.spSectores_DisponibilidadNivelesListadoHTML_Result)">
+          <Parameter Name="IdPatio" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="spPatios_DisponibilidadSectoresListadoHTML" ReturnType="Collection(CDLogisticaAModel.spPatios_DisponibilidadSectoresListadoHTML_Result)">
+          <Parameter Name="IdPatio" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="C__MigrationHistory" EntityType="CDLogisticaAModel.C__MigrationHistory" />
+          <EntitySet Name="Aplicaciones" EntityType="CDLogisticaAModel.Aplicaciones" />
+          <EntitySet Name="AspNetRoles" EntityType="CDLogisticaAModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="CDLogisticaAModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="CDLogisticaAModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="CDLogisticaAModel.AspNetUsers" />
+          <EntitySet Name="Catalogos" EntityType="CDLogisticaAModel.Catalogos" />
+          <EntitySet Name="CatalogosElementos" EntityType="CDLogisticaAModel.CatalogosElementos" />
+          <EntitySet Name="CatalogosElementosExt" EntityType="CDLogisticaAModel.CatalogosElementosExt" />
+          <EntitySet Name="configInterfaz" EntityType="CDLogisticaAModel.configInterfaz" />
+          <EntitySet Name="LOG_bitacoraGeneral" EntityType="CDLogisticaAModel.LOG_bitacoraGeneral" />
+          <EntitySet Name="LOG_bitacoraSesiones" EntityType="CDLogisticaAModel.LOG_bitacoraSesiones" />
+          <EntitySet Name="LOG_Errores" EntityType="CDLogisticaAModel.LOG_Errores" />
+          <EntitySet Name="Parametros" EntityType="CDLogisticaAModel.Parametros" />
+          <EntitySet Name="Usuarios" EntityType="CDLogisticaAModel.Usuarios" />
+          <EntitySet Name="ActividadAdjuntos" EntityType="CDLogisticaAModel.ActividadAdjuntos" />
+          <EntitySet Name="ActividadInstantanea" EntityType="CDLogisticaAModel.ActividadInstantanea" />
+          <EntitySet Name="ActividadPatio" EntityType="CDLogisticaAModel.ActividadPatio" />
+          <EntitySet Name="ActividadPuerta" EntityType="CDLogisticaAModel.ActividadPuerta" />
+          <EntitySet Name="ActividadVideo" EntityType="CDLogisticaAModel.ActividadVideo" />
+          <EntitySet Name="Cajones" EntityType="CDLogisticaAModel.Cajones" />
+          <EntitySet Name="Camaras" EntityType="CDLogisticaAModel.Camaras" />
+          <EntitySet Name="configInterfaz1" EntityType="CDLogisticaAModel.configInterfaz1" />
+          <EntitySet Name="LOG_errores1" EntityType="CDLogisticaAModel.LOG_errores1" />
+          <EntitySet Name="Niveles" EntityType="CDLogisticaAModel.Niveles" />
+          <EntitySet Name="Patios" EntityType="CDLogisticaAModel.Patios" />
+          <EntitySet Name="PersonasFisicas" EntityType="CDLogisticaAModel.PersonasFisicas" />
+          <EntitySet Name="PersonasMorales" EntityType="CDLogisticaAModel.PersonasMorales" />
+          <EntitySet Name="Puertas" EntityType="CDLogisticaAModel.Puertas" />
+          <EntitySet Name="Sectores" EntityType="CDLogisticaAModel.Sectores" />
+          <EntitySet Name="Tarifas" EntityType="CDLogisticaAModel.Tarifas" />
+          <EntitySet Name="Unidades" EntityType="CDLogisticaAModel.Unidades" />
+          <EntitySet Name="vwActividadesPuerta" EntityType="CDLogisticaAModel.vwActividadesPuerta" />
+          <EntitySet Name="vwPatiosCajones_status" EntityType="CDLogisticaAModel.vwPatiosCajones_status" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogo01" Association="CDLogisticaAModel.FK_Catalogo01">
+            <End Role="Catalogos" EntitySet="Catalogos" />
+            <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elemento01" Association="CDLogisticaAModel.FK_Elemento01">
+            <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
+            <End Role="CatalogosElementosExt" EntitySet="CatalogosElementosExt" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CDLogisticaAModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="spPuertas_ObtenerReporteGeneral" ReturnType="Collection(CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result)">
+            <Parameter Name="tipo" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spCatalogoElementos_ObtenerListadoSimple_Result">
+          <Property Type="Int64" Name="idElemento" Nullable="false" />
+          <Property Type="Int32" Name="ordenVisual" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="nombreVisible" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="spCamaras_ObtenerListadoSimple_Result">
+          <Property Type="Int64" Name="idcamara" Nullable="false" />
+          <Property Type="Int32" Name="ordenVisual" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombreVisible" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spPuertas_ObtenerListadoSimple_Result">
+          <Property Type="Int64" Name="idpuerta" Nullable="false" />
+          <Property Type="Int32" Name="ordenVisual" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombreVisible" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spNiveles_DisponibilidadCajonesListadoSimple_Result">
+          <Property Type="Int64" Name="idcajon" Nullable="false" />
+          <Property Type="String" Name="nombrevisible" Nullable="true" MaxLength="20" />
+          <Property Type="Int64" Name="numcajon" Nullable="true" />
+          <Property Type="String" Name="clavetexto" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spPatios_DisponibilidadSectores_Result">
+          <Property Type="Int64" Name="idsector" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombrevisible" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="claveTexto" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="valorAsociado" Nullable="true" />
+          <Property Type="Int32" Name="disponibilidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spSectores_DisponibilidadNiveles_Result">
+          <Property Type="Int64" Name="idnivel" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombrevisible" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="numcajones" Nullable="true" />
+          <Property Type="Int32" Name="disponibilidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spNiveles_DisponibilidadCajonesListadoHTML_Result">
+          <Property Type="Int64" Name="idnivel" Nullable="false" />
+          <Property Type="String" Name="nombreVisible" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="cajonesdisponibles" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spSectores_DisponibilidadNivelesListadoHTML_Result">
+          <Property Type="Int64" Name="idSector" Nullable="false" />
+          <Property Type="String" Name="nombreVisible" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="nivelesdisponibles" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spPatios_DisponibilidadSectoresListadoHTML_Result">
+          <Property Type="Int64" Name="idsector" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombrevisible" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="claveTexto" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="valorAsociado" Nullable="true" />
+          <Property Type="Int32" Name="NivelesDisponibles" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Aplicaciones">
+          <Key>
+            <PropertyRef Name="IdAplicacion" />
+          </Key>
+          <Property Name="IdAplicacion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="esVisible" Type="Boolean" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CDLogisticaAModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="esActivo" Type="Boolean" />
+          <Property Name="Source" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CDLogisticaAModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Catalogos">
+          <Key>
+            <PropertyRef Name="idCatalogo" />
+          </Key>
+          <Property Name="idCatalogo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomCatalogo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nomVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="txtDescripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="tipoDato" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="valorAsociado" Type="Int64" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+          <Property Name="esJerarquico" Type="Boolean" Nullable="false" />
+          <Property Name="esExtendido" Type="Boolean" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="idEmpresa" Type="Int64" />
+          <Property Name="esEditable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatalogosElementos" Relationship="CDLogisticaAModel.FK_Catalogo01" FromRole="Catalogos" ToRole="CatalogosElementos" />
+        </EntityType>
+        <EntityType Name="CatalogosElementos">
+          <Key>
+            <PropertyRef Name="idElemento" />
+          </Key>
+          <Property Name="idElemento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idCatalogo" Type="Int64" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="valorAsociado" Type="Int64" />
+          <Property Name="claveTexto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="esEditable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Catalogos" Relationship="CDLogisticaAModel.FK_Catalogo01" FromRole="CatalogosElementos" ToRole="Catalogos" />
+          <NavigationProperty Name="CatalogosElementosExt" Relationship="CDLogisticaAModel.FK_Elemento01" FromRole="CatalogosElementos" ToRole="CatalogosElementosExt" />
+        </EntityType>
+        <EntityType Name="CatalogosElementosExt">
+          <Key>
+            <PropertyRef Name="idElementoExt" />
+          </Key>
+          <Property Name="idElementoExt" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCatalogoElemento" Type="Int64" Nullable="false" />
+          <Property Name="campo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campo3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campo4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campo5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campo6" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="campo7" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="campo8" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="campo9" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="campo10" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CatalogosElementos" Relationship="CDLogisticaAModel.FK_Elemento01" FromRole="CatalogosElementosExt" ToRole="CatalogosElementos" />
+        </EntityType>
+        <EntityType Name="configInterfaz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVentana" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nomComponente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tipoDato" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="origenDato" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nombreFuente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="valorInicial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="esActivo" Type="Boolean" />
+          <Property Name="mostrarComponente" Type="Boolean" />
+          <Property Name="etiquetaVisible" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="campoObligatorio" Type="Boolean" Nullable="false" />
+          <Property Name="tipoComponente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_bitacoraGeneral">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tabla_SP_vista" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdRegistroAfectado" Type="Int64" />
+          <Property Name="IdUsuario" Type="Int64" />
+          <Property Name="txtDetalle1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="txtDetalle2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LOG_bitacoraSesiones">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSesion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuarioAfectado" Type="Int64" />
+          <Property Name="txtDetalle1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="txtDetalle2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LOG_Errores">
+          <Key>
+            <PropertyRef Name="idBitacora" />
+          </Key>
+          <Property Name="idBitacora" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="txtDetalle1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="txtDetalle2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="txtDetalle3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="idParametro" />
+          </Key>
+          <Property Name="idParametro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idModulo" Type="Int64" />
+          <Property Name="nomParametro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipoDato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="rangoValorSerie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="valor1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="numClasificador" Type="Int32" Nullable="false" />
+          <Property Name="txtClasificador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="numClasificador2" Type="Int32" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="esActivo" Type="Int16" Nullable="false" />
+          <Property Name="LastDirectoryUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ActividadAdjuntos">
+          <Key>
+            <PropertyRef Name="idAdjunto" />
+          </Key>
+          <Property Name="idAdjunto" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreArchivo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="idActividadPuerta" Type="Int64" />
+          <Property Name="idActividadPatio" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ActividadInstantanea">
+          <Key>
+            <PropertyRef Name="idInstantanea" />
+          </Key>
+          <Property Name="idInstantanea" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCamara" Type="Int64" />
+          <Property Name="NombreArchivo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="idActividadPuerta" Type="Int64" />
+          <Property Name="idActividadPatio" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ActividadPatio">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoActividad" Type="Int64" />
+          <Property Name="idTipoUnidad" Type="Int64" />
+          <Property Name="idOperador" Type="Int64" />
+          <Property Name="idTransportista" Type="Int64" />
+          <Property Name="idUnidad" Type="Int64" />
+          <Property Name="idPatio" Type="Int64" Nullable="false" />
+          <Property Name="idSector" Type="Int64" Nullable="false" />
+          <Property Name="idNivel" Type="Int64" Nullable="false" />
+          <Property Name="idCajon" Type="Int64" Nullable="false" />
+          <Property Name="codigoQR" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="codigoBarras" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="valor1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clave1" Type="Int64" />
+          <Property Name="clave2" Type="Int64" />
+          <Property Name="clave3" Type="Int64" />
+          <Property Name="clave4" Type="Int64" />
+          <Property Name="clave5" Type="Int64" />
+          <Property Name="dato1" Type="Double" />
+          <Property Name="dato2" Type="Double" />
+          <Property Name="fecha1" Type="DateTime" Precision="3" />
+          <Property Name="fecha2" Type="DateTime" Precision="3" />
+          <Property Name="fecha3" Type="DateTime" Precision="3" />
+          <Property Name="bolExtendido" Type="Boolean" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ActividadPuerta">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoActividad" Type="Int64" />
+          <Property Name="idActividadPatio" Type="Int64" />
+          <Property Name="idTipoUnidad" Type="Int64" />
+          <Property Name="idModoAsignacion" Type="Int64" />
+          <Property Name="idTarifa" Type="Int64" />
+          <Property Name="idPuerta" Type="Int64" />
+          <Property Name="idOperadorRegistro" Type="Int64" />
+          <Property Name="idUnidad" Type="Int64" />
+          <Property Name="idTransportista" Type="Int64" />
+          <Property Name="codigoQR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoBarras" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="nota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fechaActividad" Type="DateTime" Precision="7" />
+          <Property Name="idInspector" Type="Int64" />
+          <Property Name="fechaInspeccion" Type="DateTime" Precision="3" />
+          <Property Name="booking" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cargoA" Type="Int64" />
+          <Property Name="idCompaniaOperadora" Type="Int64" />
+          <Property Name="idLugarInicio" Type="Int64" />
+          <Property Name="idLugarDestino" Type="Int64" />
+          <Property Name="idOperadora_conductor" Type="Int64" />
+          <Property Name="numPlaca" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="numLicencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idCompania" Type="Int64" />
+          <Property Name="condicionUnidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="costoNormal" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="porcentajeDescuento" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="numAprobacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idImpuestosAplicables" Type="Int64" />
+          <Property Name="montoImpuestos" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="idMoneda" Type="Int64" />
+          <Property Name="numUnidadAlterna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="enviarEDI" Type="Boolean" />
+          <Property Name="propietarioPatio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="arrendatarioPatio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalFactura" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="numEDI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="bolExtendido" Type="Boolean" />
+          <Property Name="valor1" Type="Int64" />
+          <Property Name="valor2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clave1" Type="Int64" />
+          <Property Name="clave2" Type="Int64" />
+          <Property Name="clave3" Type="Int64" />
+          <Property Name="clave4" Type="Int64" />
+          <Property Name="clave5" Type="Int64" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="7" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="rutaBoleto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ActividadVideo">
+          <Key>
+            <PropertyRef Name="idVideo" />
+          </Key>
+          <Property Name="idVideo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCamara" Type="Int64" />
+          <Property Name="NombreArchivo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="idActividadPuerta" Type="Int64" />
+          <Property Name="idActividadPatio" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Cajones">
+          <Key>
+            <PropertyRef Name="idCajon" />
+          </Key>
+          <Property Name="idCajon" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreVisible" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="numCajon" Type="Int64" />
+          <Property Name="idNivel" Type="Int64" />
+          <Property Name="idEstatus" Type="Int64" />
+          <Property Name="valorAsociado1" Type="Int64" />
+          <Property Name="valorAsociado2" Type="Int64" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="ordenVisual" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Camaras">
+          <Key>
+            <PropertyRef Name="idCamara" />
+          </Key>
+          <Property Name="idCamara" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="config1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="config2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="config3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="clave1" Type="Int64" />
+          <Property Name="clave2" Type="Int64" />
+          <Property Name="clave3" Type="Int64" />
+          <Property Name="clave4" Type="Int64" />
+          <Property Name="clave5" Type="Int64" />
+          <Property Name="clave6" Type="Int64" />
+          <Property Name="clave7" Type="Int64" />
+          <Property Name="clave8" Type="Int64" />
+          <Property Name="clave9" Type="Int64" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="configInterfaz1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVentana" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nomComponente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipoDato" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="origenDato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombreFuente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valorInicial" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="esActivo" Type="Boolean" />
+          <Property Name="mostrarComponente" Type="Boolean" />
+          <Property Name="etiquetaVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="campoObligatorio" Type="Boolean" Nullable="false" />
+          <Property Name="tipoComponente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOG_errores1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="Level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="logger" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="Exception" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Niveles">
+          <Key>
+            <PropertyRef Name="idNivel" />
+          </Key>
+          <Property Name="idNivel" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numCajones" Type="Int32" />
+          <Property Name="valorAsociado" Type="Int64" />
+          <Property Name="descripcion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="idSector" Type="Int64" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patios">
+          <Key>
+            <PropertyRef Name="idPatio" />
+          </Key>
+          <Property Name="idPatio" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="claveTexto" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="valorAsociado" Type="Int64" />
+          <Property Name="idPropietario" Type="Int64" />
+          <Property Name="idArrendador" Type="Int64" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonasFisicas">
+          <Key>
+            <PropertyRef Name="idPersona" />
+          </Key>
+          <Property Name="idPersona" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPerfilProfesional" Type="Int64" />
+          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="repositorioFoto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="domicilio" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonasMorales">
+          <Key>
+            <PropertyRef Name="idPersonaMoral" />
+          </Key>
+          <Property Name="idPersonaMoral" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rfc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="paginaweb" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="comentarios" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="idNivelSuperior" Type="Int64" />
+          <Property Name="esActivo" Type="Boolean" />
+          <Property Name="esCliente" Type="Boolean" />
+          <Property Name="esProveedor" Type="Boolean" />
+          <Property Name="idEmpresa" Type="Int64" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puertas">
+          <Key>
+            <PropertyRef Name="idPuerta" />
+          </Key>
+          <Property Name="idPuerta" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="clave1" Type="Int64" />
+          <Property Name="clave2" Type="Int64" />
+          <Property Name="clave3" Type="Int64" />
+          <Property Name="clave4" Type="Int64" />
+          <Property Name="clave5" Type="Int64" />
+          <Property Name="clave6" Type="Int64" />
+          <Property Name="clave7" Type="Int64" />
+          <Property Name="clave8" Type="Int64" />
+          <Property Name="clave9" Type="Int64" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Sectores">
+          <Key>
+            <PropertyRef Name="idSector" />
+          </Key>
+          <Property Name="idSector" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="claveTexto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="valorAsociado" Type="Int64" />
+          <Property Name="descripcion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="idPatio" Type="Int64" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="esActivo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarifas">
+          <Key>
+            <PropertyRef Name="idTarifa" />
+          </Key>
+          <Property Name="idTarifa" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipo1" Type="Int64" />
+          <Property Name="nomTarifa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idMoneda" Type="Int64" />
+          <Property Name="valorAsociado1" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado2" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado3" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="valorAsociado4" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="idTipo2" Type="Int64" />
+          <Property Name="idEmpresa" Type="Int64" />
+          <Property Name="idClasificador1" Type="Int64" />
+          <Property Name="idClasificador2" Type="Int64" />
+          <Property Name="esActivo" Type="Boolean" />
+          <Property Name="idEstatus" Type="Int64" />
+          <Property Name="esVigente" Type="Boolean" />
+          <Property Name="ordenVisual" Type="Int32" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Unidades">
+          <Key>
+            <PropertyRef Name="idUnidad" />
+          </Key>
+          <Property Name="idUnidad" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipo3" Type="Int64" />
+          <Property Name="nomUnidad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="numUnidad" Type="Int64" />
+          <Property Name="clasificador1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="clasificador2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="idTipo2" Type="Int64" />
+          <Property Name="idPropietario" Type="Int64" />
+          <Property Name="idArrendador" Type="Int64" />
+          <Property Name="valorAsociado1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CeCo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="idEstatusUnidad" Type="Int64" />
+          <Property Name="modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaInicialServicio" Type="DateTime" Precision="3" />
+          <Property Name="idUbicacionFisica" Type="Int64" />
+          <Property Name="montoLimiteReparacion" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="idTipo1" Type="Int64" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="idUsuarioModificacion" Type="Int64" />
+          <Property Name="esVisible" Type="Boolean" Nullable="false" />
+          <Property Name="idEstatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwActividadesPuerta">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="Int64" Nullable="false" />
+          <Property Name="idTipoActividad" Type="Int64" />
+          <Property Name="tipoActividad" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idTipoUnidad" Type="Int64" />
+          <Property Name="tipoUnidad" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idModoAsignacion" Type="Int64" />
+          <Property Name="modoAsignacion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idTarifa" Type="Int64" />
+          <Property Name="tarifa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idPuerta" Type="Int64" />
+          <Property Name="puerta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fechaActividad" Type="DateTime" Precision="7" />
+          <Property Name="costoNormal" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="idUsuarioRegistro" Type="Int64" />
+          <Property Name="usuarioRegistro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="rutaBoleto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwPatiosCajones_status">
+          <Key>
+            <PropertyRef Name="idPatio" />
+            <PropertyRef Name="estatusPatio" />
+            <PropertyRef Name="idSector" />
+            <PropertyRef Name="estatusSector" />
+            <PropertyRef Name="idNivel" />
+            <PropertyRef Name="estatusNivel" />
+          </Key>
+          <Property Name="idPatio" Type="Int64" Nullable="false" />
+          <Property Name="clavePatio" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="estatusPatio" Type="Int64" Nullable="false" />
+          <Property Name="idPropietario" Type="Int64" />
+          <Property Name="idSector" Type="Int64" Nullable="false" />
+          <Property Name="claveSector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estatusSector" Type="Int64" Nullable="false" />
+          <Property Name="idNivel" Type="Int64" Nullable="false" />
+          <Property Name="claveNivel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estatusNivel" Type="Int64" Nullable="false" />
+          <Property Name="numCajones" Type="Int32" />
+          <Property Name="claveCajon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreVisible" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="idCajon" Type="Int64" />
+          <Property Name="estatusCajon" Type="Int64" />
+          <Property Name="numCajon" Type="Int64" />
+          <Property Name="valorAsociado1" Type="Int64" />
+          <Property Name="valorAsociado2" Type="Int64" />
+          <Property Name="nomEstatusCajon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nomVisibleEstatusCajon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CDLogisticaAModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CDLogisticaAModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CDLogisticaAModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CDLogisticaAModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogo01">
+          <End Type="CDLogisticaAModel.Catalogos" Role="Catalogos" Multiplicity="1" />
+          <End Type="CDLogisticaAModel.CatalogosElementos" Role="CatalogosElementos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogos">
+              <PropertyRef Name="idCatalogo" />
+            </Principal>
+            <Dependent Role="CatalogosElementos">
+              <PropertyRef Name="idCatalogo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elemento01">
+          <End Type="CDLogisticaAModel.CatalogosElementos" Role="CatalogosElementos" Multiplicity="1" />
+          <End Type="CDLogisticaAModel.CatalogosElementosExt" Role="CatalogosElementosExt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogosElementos">
+              <PropertyRef Name="idElemento" />
+            </Principal>
+            <Dependent Role="CatalogosElementosExt">
+              <PropertyRef Name="idCatalogoElemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CDLogisticaAModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="CDLogisticaAModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="spPuertas_ObtenerReporteGeneral_Result">
+          <Property Type="String" Name="tipoactividad" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tipounidad" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="modoasignacion" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tarifa" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="puerta" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nota" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="fechaactividad" Nullable="true" />
+          <Property Type="Decimal" Name="costonormal" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="String" Name="usuarioregistro" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CDLogisticaAModelStoreContainer" CdmEntityContainer="CDLogisticaAEntities">
+          <FunctionImportMapping FunctionImportName="spCatalogoElementos_ObtenerListadoSimple" FunctionName="CDLogisticaAModel.Store.spCatalogoElementos_ObtenerListadoSimple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spCatalogoElementos_ObtenerListadoSimple_Result">
+                <ScalarProperty Name="idElemento" ColumnName="idElemento" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spCamaras_ObtenerListadoSimple" FunctionName="CDLogisticaAModel.Store.spCamaras_ObtenerListadoSimple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spCamaras_ObtenerListadoSimple_Result">
+                <ScalarProperty Name="idcamara" ColumnName="idcamara" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spPuertas_ObtenerListadoSimple" FunctionName="CDLogisticaAModel.Store.spPuertas_ObtenerListadoSimple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spPuertas_ObtenerListadoSimple_Result">
+                <ScalarProperty Name="idpuerta" ColumnName="idpuerta" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spNiveles_DisponibilidadCajonesListadoSimple" FunctionName="CDLogisticaAModel.Store.spNiveles_DisponibilidadCajonesListadoSimple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spNiveles_DisponibilidadCajonesListadoSimple_Result">
+                <ScalarProperty Name="idcajon" ColumnName="idcajon" />
+                <ScalarProperty Name="nombrevisible" ColumnName="nombrevisible" />
+                <ScalarProperty Name="numcajon" ColumnName="numcajon" />
+                <ScalarProperty Name="clavetexto" ColumnName="clavetexto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSectores_DisponibilidadNiveles" FunctionName="CDLogisticaAModel.Store.spSectores_DisponibilidadNiveles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spSectores_DisponibilidadNiveles_Result">
+                <ScalarProperty Name="idnivel" ColumnName="idnivel" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombrevisible" ColumnName="nombrevisible" />
+                <ScalarProperty Name="numcajones" ColumnName="numcajones" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spNiveles_DisponibilidadCajonesListadoHTML" FunctionName="CDLogisticaAModel.Store.spNiveles_DisponibilidadCajonesListadoHTML">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spNiveles_DisponibilidadCajonesListadoHTML_Result">
+                <ScalarProperty Name="idnivel" ColumnName="idnivel" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="cajonesdisponibles" ColumnName="cajonesdisponibles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spSectores_DisponibilidadNivelesListadoHTML" FunctionName="CDLogisticaAModel.Store.spSectores_DisponibilidadNivelesListadoHTML">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spSectores_DisponibilidadNivelesListadoHTML_Result">
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nivelesdisponibles" ColumnName="nivelesdisponibles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spPatios_DisponibilidadSectoresListadoHTML" FunctionName="CDLogisticaAModel.Store.spPatios_DisponibilidadSectoresListadoHTML">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spPatios_DisponibilidadSectoresListadoHTML_Result">
+                <ScalarProperty Name="idsector" ColumnName="idsector" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombrevisible" ColumnName="nombrevisible" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="NivelesDisponibles" ColumnName="NivelesDisponibles" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aplicaciones">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Aplicaciones">
+              <MappingFragment StoreEntitySet="Aplicaciones">
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="IdAplicacion" ColumnName="IdAplicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogos">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Catalogos">
+              <MappingFragment StoreEntitySet="Catalogos">
+                <ScalarProperty Name="esEditable" ColumnName="esEditable" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="esExtendido" ColumnName="esExtendido" />
+                <ScalarProperty Name="esJerarquico" ColumnName="esJerarquico" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="tipoDato" ColumnName="tipoDato" />
+                <ScalarProperty Name="txtDescripcion" ColumnName="txtDescripcion" />
+                <ScalarProperty Name="nomVisible" ColumnName="nomVisible" />
+                <ScalarProperty Name="nomCatalogo" ColumnName="nomCatalogo" />
+                <ScalarProperty Name="idCatalogo" ColumnName="idCatalogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogosElementos">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.CatalogosElementos">
+              <MappingFragment StoreEntitySet="CatalogosElementos">
+                <ScalarProperty Name="esEditable" ColumnName="esEditable" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idCatalogo" ColumnName="idCatalogo" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idElemento" ColumnName="idElemento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogosElementosExt">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.CatalogosElementosExt">
+              <MappingFragment StoreEntitySet="CatalogosElementosExt">
+                <ScalarProperty Name="campo10" ColumnName="campo10" />
+                <ScalarProperty Name="campo9" ColumnName="campo9" />
+                <ScalarProperty Name="campo8" ColumnName="campo8" />
+                <ScalarProperty Name="campo7" ColumnName="campo7" />
+                <ScalarProperty Name="campo6" ColumnName="campo6" />
+                <ScalarProperty Name="campo5" ColumnName="campo5" />
+                <ScalarProperty Name="campo4" ColumnName="campo4" />
+                <ScalarProperty Name="campo3" ColumnName="campo3" />
+                <ScalarProperty Name="campo2" ColumnName="campo2" />
+                <ScalarProperty Name="campo1" ColumnName="campo1" />
+                <ScalarProperty Name="idCatalogoElemento" ColumnName="idCatalogoElemento" />
+                <ScalarProperty Name="idElementoExt" ColumnName="idElementoExt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configInterfaz">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.configInterfaz">
+              <MappingFragment StoreEntitySet="configInterfaz">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="tipoComponente" ColumnName="tipoComponente" />
+                <ScalarProperty Name="campoObligatorio" ColumnName="campoObligatorio" />
+                <ScalarProperty Name="etiquetaVisible" ColumnName="etiquetaVisible" />
+                <ScalarProperty Name="mostrarComponente" ColumnName="mostrarComponente" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="valorInicial" ColumnName="valorInicial" />
+                <ScalarProperty Name="nombreFuente" ColumnName="nombreFuente" />
+                <ScalarProperty Name="origenDato" ColumnName="origenDato" />
+                <ScalarProperty Name="tipoDato" ColumnName="tipoDato" />
+                <ScalarProperty Name="nomComponente" ColumnName="nomComponente" />
+                <ScalarProperty Name="idVentana" ColumnName="idVentana" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_bitacoraGeneral">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.LOG_bitacoraGeneral">
+              <MappingFragment StoreEntitySet="LOG_bitacoraGeneral">
+                <ScalarProperty Name="txtDetalle2" ColumnName="txtDetalle2" />
+                <ScalarProperty Name="txtDetalle1" ColumnName="txtDetalle1" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdRegistroAfectado" ColumnName="IdRegistroAfectado" />
+                <ScalarProperty Name="operacion" ColumnName="operacion" />
+                <ScalarProperty Name="tabla_SP_vista" ColumnName="tabla_SP_vista" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idBitacora" ColumnName="idBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_bitacoraSesiones">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.LOG_bitacoraSesiones">
+              <MappingFragment StoreEntitySet="LOG_bitacoraSesiones">
+                <ScalarProperty Name="txtDetalle2" ColumnName="txtDetalle2" />
+                <ScalarProperty Name="txtDetalle1" ColumnName="txtDetalle1" />
+                <ScalarProperty Name="IdUsuarioAfectado" ColumnName="IdUsuarioAfectado" />
+                <ScalarProperty Name="operacion" ColumnName="operacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="IdSesion" ColumnName="IdSesion" />
+                <ScalarProperty Name="idBitacora" ColumnName="idBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_Errores">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.LOG_Errores">
+              <MappingFragment StoreEntitySet="LOG_Errores">
+                <ScalarProperty Name="txtDetalle3" ColumnName="txtDetalle3" />
+                <ScalarProperty Name="txtDetalle2" ColumnName="txtDetalle2" />
+                <ScalarProperty Name="txtDetalle1" ColumnName="txtDetalle1" />
+                <ScalarProperty Name="modulo" ColumnName="modulo" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idBitacora" ColumnName="idBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="numClasificador2" ColumnName="numClasificador2" />
+                <ScalarProperty Name="txtClasificador" ColumnName="txtClasificador" />
+                <ScalarProperty Name="numClasificador" ColumnName="numClasificador" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="valor2" ColumnName="valor2" />
+                <ScalarProperty Name="valor1" ColumnName="valor1" />
+                <ScalarProperty Name="rangoValorSerie" ColumnName="rangoValorSerie" />
+                <ScalarProperty Name="tipoDato" ColumnName="tipoDato" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nomParametro" ColumnName="nomParametro" />
+                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+                <ScalarProperty Name="idParametro" ColumnName="idParametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="LastDirectoryUpdate" ColumnName="LastDirectoryUpdate" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadAdjuntos">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.ActividadAdjuntos">
+              <MappingFragment StoreEntitySet="ActividadAdjuntos">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idActividadPatio" ColumnName="idActividadPatio" />
+                <ScalarProperty Name="idActividadPuerta" ColumnName="idActividadPuerta" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="idAdjunto" ColumnName="idAdjunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadInstantanea">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.ActividadInstantanea">
+              <MappingFragment StoreEntitySet="ActividadInstantanea">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idActividadPatio" ColumnName="idActividadPatio" />
+                <ScalarProperty Name="idActividadPuerta" ColumnName="idActividadPuerta" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="idCamara" ColumnName="idCamara" />
+                <ScalarProperty Name="idInstantanea" ColumnName="idInstantanea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadPatio">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.ActividadPatio">
+              <MappingFragment StoreEntitySet="ActividadPatio">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="bolExtendido" ColumnName="bolExtendido" />
+                <ScalarProperty Name="fecha3" ColumnName="fecha3" />
+                <ScalarProperty Name="fecha2" ColumnName="fecha2" />
+                <ScalarProperty Name="fecha1" ColumnName="fecha1" />
+                <ScalarProperty Name="dato2" ColumnName="dato2" />
+                <ScalarProperty Name="dato1" ColumnName="dato1" />
+                <ScalarProperty Name="clave5" ColumnName="clave5" />
+                <ScalarProperty Name="clave4" ColumnName="clave4" />
+                <ScalarProperty Name="clave3" ColumnName="clave3" />
+                <ScalarProperty Name="clave2" ColumnName="clave2" />
+                <ScalarProperty Name="clave1" ColumnName="clave1" />
+                <ScalarProperty Name="valor5" ColumnName="valor5" />
+                <ScalarProperty Name="valor4" ColumnName="valor4" />
+                <ScalarProperty Name="valor3" ColumnName="valor3" />
+                <ScalarProperty Name="valor2" ColumnName="valor2" />
+                <ScalarProperty Name="valor1" ColumnName="valor1" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigoBarras" ColumnName="codigoBarras" />
+                <ScalarProperty Name="codigoQR" ColumnName="codigoQR" />
+                <ScalarProperty Name="idCajon" ColumnName="idCajon" />
+                <ScalarProperty Name="idNivel" ColumnName="idNivel" />
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+                <ScalarProperty Name="idPatio" ColumnName="idPatio" />
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+                <ScalarProperty Name="idTransportista" ColumnName="idTransportista" />
+                <ScalarProperty Name="idOperador" ColumnName="idOperador" />
+                <ScalarProperty Name="idTipoUnidad" ColumnName="idTipoUnidad" />
+                <ScalarProperty Name="idTipoActividad" ColumnName="idTipoActividad" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadPuerta">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.ActividadPuerta">
+              <MappingFragment StoreEntitySet="ActividadPuerta">
+                <ScalarProperty Name="rutaBoleto" ColumnName="rutaBoleto" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="clave5" ColumnName="clave5" />
+                <ScalarProperty Name="clave4" ColumnName="clave4" />
+                <ScalarProperty Name="clave3" ColumnName="clave3" />
+                <ScalarProperty Name="clave2" ColumnName="clave2" />
+                <ScalarProperty Name="clave1" ColumnName="clave1" />
+                <ScalarProperty Name="valor5" ColumnName="valor5" />
+                <ScalarProperty Name="valor4" ColumnName="valor4" />
+                <ScalarProperty Name="valor3" ColumnName="valor3" />
+                <ScalarProperty Name="valor2" ColumnName="valor2" />
+                <ScalarProperty Name="valor1" ColumnName="valor1" />
+                <ScalarProperty Name="bolExtendido" ColumnName="bolExtendido" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="numEDI" ColumnName="numEDI" />
+                <ScalarProperty Name="totalFactura" ColumnName="totalFactura" />
+                <ScalarProperty Name="arrendatarioPatio" ColumnName="arrendatarioPatio" />
+                <ScalarProperty Name="propietarioPatio" ColumnName="propietarioPatio" />
+                <ScalarProperty Name="enviarEDI" ColumnName="enviarEDI" />
+                <ScalarProperty Name="numUnidadAlterna" ColumnName="numUnidadAlterna" />
+                <ScalarProperty Name="idMoneda" ColumnName="idMoneda" />
+                <ScalarProperty Name="montoImpuestos" ColumnName="montoImpuestos" />
+                <ScalarProperty Name="idImpuestosAplicables" ColumnName="idImpuestosAplicables" />
+                <ScalarProperty Name="numAprobacion" ColumnName="numAprobacion" />
+                <ScalarProperty Name="porcentajeDescuento" ColumnName="porcentajeDescuento" />
+                <ScalarProperty Name="costoNormal" ColumnName="costoNormal" />
+                <ScalarProperty Name="condicionUnidad" ColumnName="condicionUnidad" />
+                <ScalarProperty Name="idCompania" ColumnName="idCompania" />
+                <ScalarProperty Name="numLicencia" ColumnName="numLicencia" />
+                <ScalarProperty Name="numPlaca" ColumnName="numPlaca" />
+                <ScalarProperty Name="idOperadora_conductor" ColumnName="idOperadora_conductor" />
+                <ScalarProperty Name="idLugarDestino" ColumnName="idLugarDestino" />
+                <ScalarProperty Name="idLugarInicio" ColumnName="idLugarInicio" />
+                <ScalarProperty Name="idCompaniaOperadora" ColumnName="idCompaniaOperadora" />
+                <ScalarProperty Name="cargoA" ColumnName="cargoA" />
+                <ScalarProperty Name="booking" ColumnName="booking" />
+                <ScalarProperty Name="fechaInspeccion" ColumnName="fechaInspeccion" />
+                <ScalarProperty Name="idInspector" ColumnName="idInspector" />
+                <ScalarProperty Name="fechaActividad" ColumnName="fechaActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="codigoBarras" ColumnName="codigoBarras" />
+                <ScalarProperty Name="codigoQR" ColumnName="codigoQR" />
+                <ScalarProperty Name="idTransportista" ColumnName="idTransportista" />
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+                <ScalarProperty Name="idOperadorRegistro" ColumnName="idOperadorRegistro" />
+                <ScalarProperty Name="idPuerta" ColumnName="idPuerta" />
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+                <ScalarProperty Name="idModoAsignacion" ColumnName="idModoAsignacion" />
+                <ScalarProperty Name="idTipoUnidad" ColumnName="idTipoUnidad" />
+                <ScalarProperty Name="idActividadPatio" ColumnName="idActividadPatio" />
+                <ScalarProperty Name="idTipoActividad" ColumnName="idTipoActividad" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadVideo">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.ActividadVideo">
+              <MappingFragment StoreEntitySet="ActividadVideo">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idActividadPatio" ColumnName="idActividadPatio" />
+                <ScalarProperty Name="idActividadPuerta" ColumnName="idActividadPuerta" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="idCamara" ColumnName="idCamara" />
+                <ScalarProperty Name="idVideo" ColumnName="idVideo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cajones">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Cajones">
+              <MappingFragment StoreEntitySet="Cajones">
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="valorAsociado2" ColumnName="valorAsociado2" />
+                <ScalarProperty Name="valorAsociado1" ColumnName="valorAsociado1" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="idNivel" ColumnName="idNivel" />
+                <ScalarProperty Name="numCajon" ColumnName="numCajon" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="idCajon" ColumnName="idCajon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Camaras">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Camaras">
+              <MappingFragment StoreEntitySet="Camaras">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="clave9" ColumnName="clave9" />
+                <ScalarProperty Name="clave8" ColumnName="clave8" />
+                <ScalarProperty Name="clave7" ColumnName="clave7" />
+                <ScalarProperty Name="clave6" ColumnName="clave6" />
+                <ScalarProperty Name="clave5" ColumnName="clave5" />
+                <ScalarProperty Name="clave4" ColumnName="clave4" />
+                <ScalarProperty Name="clave3" ColumnName="clave3" />
+                <ScalarProperty Name="clave2" ColumnName="clave2" />
+                <ScalarProperty Name="clave1" ColumnName="clave1" />
+                <ScalarProperty Name="config3" ColumnName="config3" />
+                <ScalarProperty Name="config2" ColumnName="config2" />
+                <ScalarProperty Name="config1" ColumnName="config1" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idCamara" ColumnName="idCamara" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configInterfaz1">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.configInterfaz1">
+              <MappingFragment StoreEntitySet="configInterfaz1">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="tipoComponente" ColumnName="tipoComponente" />
+                <ScalarProperty Name="campoObligatorio" ColumnName="campoObligatorio" />
+                <ScalarProperty Name="etiquetaVisible" ColumnName="etiquetaVisible" />
+                <ScalarProperty Name="mostrarComponente" ColumnName="mostrarComponente" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="valorInicial" ColumnName="valorInicial" />
+                <ScalarProperty Name="nombreFuente" ColumnName="nombreFuente" />
+                <ScalarProperty Name="origenDato" ColumnName="origenDato" />
+                <ScalarProperty Name="tipoDato" ColumnName="tipoDato" />
+                <ScalarProperty Name="nomComponente" ColumnName="nomComponente" />
+                <ScalarProperty Name="idVentana" ColumnName="idVentana" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOG_errores1">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.LOG_errores1">
+              <MappingFragment StoreEntitySet="LOG_errores1">
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="logger" ColumnName="logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Niveles">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Niveles">
+              <MappingFragment StoreEntitySet="Niveles">
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="numCajones" ColumnName="numCajones" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idNivel" ColumnName="idNivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patios">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Patios">
+              <MappingFragment StoreEntitySet="Patios">
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="idArrendador" ColumnName="idArrendador" />
+                <ScalarProperty Name="idPropietario" ColumnName="idPropietario" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPatio" ColumnName="idPatio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasFisicas">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.PersonasFisicas">
+              <MappingFragment StoreEntitySet="PersonasFisicas">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="domicilio" ColumnName="domicilio" />
+                <ScalarProperty Name="repositorioFoto" ColumnName="repositorioFoto" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="idPerfilProfesional" ColumnName="idPerfilProfesional" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasMorales">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.PersonasMorales">
+              <MappingFragment StoreEntitySet="PersonasMorales">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="esProveedor" ColumnName="esProveedor" />
+                <ScalarProperty Name="esCliente" ColumnName="esCliente" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="idNivelSuperior" ColumnName="idNivelSuperior" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="paginaweb" ColumnName="paginaweb" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPersonaMoral" ColumnName="idPersonaMoral" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puertas">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Puertas">
+              <MappingFragment StoreEntitySet="Puertas">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="clave9" ColumnName="clave9" />
+                <ScalarProperty Name="clave8" ColumnName="clave8" />
+                <ScalarProperty Name="clave7" ColumnName="clave7" />
+                <ScalarProperty Name="clave6" ColumnName="clave6" />
+                <ScalarProperty Name="clave5" ColumnName="clave5" />
+                <ScalarProperty Name="clave4" ColumnName="clave4" />
+                <ScalarProperty Name="clave3" ColumnName="clave3" />
+                <ScalarProperty Name="clave2" ColumnName="clave2" />
+                <ScalarProperty Name="clave1" ColumnName="clave1" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPuerta" ColumnName="idPuerta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sectores">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Sectores">
+              <MappingFragment StoreEntitySet="Sectores">
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="idPatio" ColumnName="idPatio" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="valorAsociado" ColumnName="valorAsociado" />
+                <ScalarProperty Name="claveTexto" ColumnName="claveTexto" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarifas">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Tarifas">
+              <MappingFragment StoreEntitySet="Tarifas">
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="ordenVisual" ColumnName="ordenVisual" />
+                <ScalarProperty Name="esVigente" ColumnName="esVigente" />
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esActivo" ColumnName="esActivo" />
+                <ScalarProperty Name="idClasificador2" ColumnName="idClasificador2" />
+                <ScalarProperty Name="idClasificador1" ColumnName="idClasificador1" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="idTipo2" ColumnName="idTipo2" />
+                <ScalarProperty Name="valorAsociado4" ColumnName="valorAsociado4" />
+                <ScalarProperty Name="valorAsociado3" ColumnName="valorAsociado3" />
+                <ScalarProperty Name="valorAsociado2" ColumnName="valorAsociado2" />
+                <ScalarProperty Name="valorAsociado1" ColumnName="valorAsociado1" />
+                <ScalarProperty Name="idMoneda" ColumnName="idMoneda" />
+                <ScalarProperty Name="nomTarifa" ColumnName="nomTarifa" />
+                <ScalarProperty Name="idTipo1" ColumnName="idTipo1" />
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unidades">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.Unidades">
+              <MappingFragment StoreEntitySet="Unidades">
+                <ScalarProperty Name="idEstatus" ColumnName="idEstatus" />
+                <ScalarProperty Name="esVisible" ColumnName="esVisible" />
+                <ScalarProperty Name="idUsuarioModificacion" ColumnName="idUsuarioModificacion" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="idTipo1" ColumnName="idTipo1" />
+                <ScalarProperty Name="montoLimiteReparacion" ColumnName="montoLimiteReparacion" />
+                <ScalarProperty Name="idUbicacionFisica" ColumnName="idUbicacionFisica" />
+                <ScalarProperty Name="fechaInicialServicio" ColumnName="fechaInicialServicio" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="idEstatusUnidad" ColumnName="idEstatusUnidad" />
+                <ScalarProperty Name="CeCo" ColumnName="CeCo" />
+                <ScalarProperty Name="valorAsociado1" ColumnName="valorAsociado1" />
+                <ScalarProperty Name="idArrendador" ColumnName="idArrendador" />
+                <ScalarProperty Name="idPropietario" ColumnName="idPropietario" />
+                <ScalarProperty Name="idTipo2" ColumnName="idTipo2" />
+                <ScalarProperty Name="clasificador2" ColumnName="clasificador2" />
+                <ScalarProperty Name="clasificador1" ColumnName="clasificador1" />
+                <ScalarProperty Name="numUnidad" ColumnName="numUnidad" />
+                <ScalarProperty Name="nomUnidad" ColumnName="nomUnidad" />
+                <ScalarProperty Name="idTipo3" ColumnName="idTipo3" />
+                <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwActividadesPuerta">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.vwActividadesPuerta">
+              <MappingFragment StoreEntitySet="vwActividadesPuerta">
+                <ScalarProperty Name="rutaBoleto" ColumnName="rutaBoleto" />
+                <ScalarProperty Name="usuarioRegistro" ColumnName="usuarioRegistro" />
+                <ScalarProperty Name="idUsuarioRegistro" ColumnName="idUsuarioRegistro" />
+                <ScalarProperty Name="costoNormal" ColumnName="costoNormal" />
+                <ScalarProperty Name="fechaActividad" ColumnName="fechaActividad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="puerta" ColumnName="puerta" />
+                <ScalarProperty Name="idPuerta" ColumnName="idPuerta" />
+                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+                <ScalarProperty Name="idTarifa" ColumnName="idTarifa" />
+                <ScalarProperty Name="modoAsignacion" ColumnName="modoAsignacion" />
+                <ScalarProperty Name="idModoAsignacion" ColumnName="idModoAsignacion" />
+                <ScalarProperty Name="tipoUnidad" ColumnName="tipoUnidad" />
+                <ScalarProperty Name="idTipoUnidad" ColumnName="idTipoUnidad" />
+                <ScalarProperty Name="tipoActividad" ColumnName="tipoActividad" />
+                <ScalarProperty Name="idTipoActividad" ColumnName="idTipoActividad" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPatiosCajones_status">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.vwPatiosCajones_status">
+              <MappingFragment StoreEntitySet="vwPatiosCajones_status">
+                <ScalarProperty Name="nomVisibleEstatusCajon" ColumnName="nomVisibleEstatusCajon" />
+                <ScalarProperty Name="nomEstatusCajon" ColumnName="nomEstatusCajon" />
+                <ScalarProperty Name="valorAsociado2" ColumnName="valorAsociado2" />
+                <ScalarProperty Name="valorAsociado1" ColumnName="valorAsociado1" />
+                <ScalarProperty Name="numCajon" ColumnName="numCajon" />
+                <ScalarProperty Name="estatusCajon" ColumnName="estatusCajon" />
+                <ScalarProperty Name="idCajon" ColumnName="idCajon" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="nombreVisible" ColumnName="nombreVisible" />
+                <ScalarProperty Name="claveCajon" ColumnName="claveCajon" />
+                <ScalarProperty Name="numCajones" ColumnName="numCajones" />
+                <ScalarProperty Name="estatusNivel" ColumnName="estatusNivel" />
+                <ScalarProperty Name="claveNivel" ColumnName="claveNivel" />
+                <ScalarProperty Name="idNivel" ColumnName="idNivel" />
+                <ScalarProperty Name="estatusSector" ColumnName="estatusSector" />
+                <ScalarProperty Name="claveSector" ColumnName="claveSector" />
+                <ScalarProperty Name="idSector" ColumnName="idSector" />
+                <ScalarProperty Name="idPropietario" ColumnName="idPropietario" />
+                <ScalarProperty Name="estatusPatio" ColumnName="estatusPatio" />
+                <ScalarProperty Name="clavePatio" ColumnName="clavePatio" />
+                <ScalarProperty Name="idPatio" ColumnName="idPatio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CDLogisticaAModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="spPuertas_ObtenerReporteGeneral" FunctionName="CDLogisticaAModel.Store.spPuertas_ObtenerReporteGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result">
+                <ScalarProperty Name="tipoactividad" ColumnName="tipoactividad" />
+                <ScalarProperty Name="tipounidad" ColumnName="tipounidad" />
+                <ScalarProperty Name="modoasignacion" ColumnName="modoasignacion" />
+                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+                <ScalarProperty Name="puerta" ColumnName="puerta" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fechaactividad" ColumnName="fechaactividad" />
+                <ScalarProperty Name="costonormal" ColumnName="costonormal" />
+                <ScalarProperty Name="usuarioregistro" ColumnName="usuarioregistro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

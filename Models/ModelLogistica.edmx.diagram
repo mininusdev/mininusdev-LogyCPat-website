@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95db89624aea42fc840f345ae61bfca9" Name="Diagram1" ZoomLevel="104">
+        <EntityTypeShape EntityType="CDLogisticaAModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Aplicaciones" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="4" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Catalogos" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.CatalogosElementos" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.CatalogosElementosExt" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.configInterfaz" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.LOG_bitacoraGeneral" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.LOG_bitacoraSesiones" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.LOG_Errores" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Parametros" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Usuarios" Width="1.5" PointX="11.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.ActividadAdjuntos" Width="1.5" PointX="9.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.ActividadInstantanea" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.ActividadPatio" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.ActividadPuerta" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.ActividadVideo" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Cajones" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Camaras" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.configInterfaz1" Width="1.5" PointX="13.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.LOG_errores1" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Niveles" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Patios" Width="1.5" PointX="15.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.PersonasFisicas" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.PersonasMorales" Width="1.5" PointX="15.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Puertas" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Sectores" Width="1.5" PointX="15.75" PointY="16.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Tarifas" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.Unidades" Width="1.5" PointX="4.75" PointY="17.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.vwActividadesPuerta" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CDLogisticaAModel.vwPatiosCajones_status" Width="1.5" PointX="17.75" PointY="12.75" />
+        <AssociationConnector Association="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CDLogisticaAModel.FK_Catalogo01" />
+        <AssociationConnector Association="CDLogisticaAModel.FK_Elemento01" />
+        <AssociationConnector Association="CDLogisticaAModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
