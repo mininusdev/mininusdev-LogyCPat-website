@@ -509,6 +509,9 @@
     <Compile Include="DataLayer\CatalogosDL.cs" />
     <Compile Include="DataLayer\ParametrosDL.cs" />
     <Compile Include="DataLayer\ReportesDL.cs" />
+    <Compile Include="Models\AspNetUserRoles.cs">
+      <DependentUpon>ModelLogistica.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>ModelLogistica.tt</DependentUpon>
     </Compile>

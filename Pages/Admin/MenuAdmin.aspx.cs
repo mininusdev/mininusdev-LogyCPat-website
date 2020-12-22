@@ -183,6 +183,53 @@ namespace logistica.Pages.Admin
             {
                 RestClient client = new RestClient(ParametrosDL.ObtenerParametroURLWS());
 
+                RestRequest request = new RestRequest("api/usuarios/1,admin", DataFormat.Json);
+
+                var res = client.Get<string>(request);
+
+                switch (res.ResponseStatus)
+                {
+                    case ResponseStatus.Completed:
+                        if (res != null && !string.IsNullOrEmpty(res.Content))
+                        {
+                            JsonSerializerSettings settings = new JsonSerializerSettings { Converters = new JsonConverter[] { new JsonGenericDictionaryOrArrayConverter() } };
+                            Dictionary<string, string> lista = JsonConvert.DeserializeObject<Dictionary<string, string>>(res.Content, settings);
+
+                            if (lista.Count > 0)
+                            {
+                                ddlUsuarios.Items.Clear();
+
+                                foreach (var elemento in lista)
+                                {
+                                    ListItem _n = new ListItem(elemento.Value, elemento.Key);
+                                    ddlUsuarios.Items.Add(_n);
+                                }
+                            }
+                        }
+                        result = true;
+
+                        break;
+                    case ResponseStatus.Error:
+                        result = false;
+                        break;
+                }
+            }
+            catch (Exception ee)
+            {
+
+            }
+
+            return result;
+        }
+
+        public bool CargarListaRoles()
+        {
+            bool result = false;
+
+            try
+            {
+                RestClient client = new RestClient(ParametrosDL.ObtenerParametroURLWS());
+
                 RestRequest request = new RestRequest("api/usuarios/roles/1,admin", DataFormat.Json);
 
                 var res = client.Get<string>(request);
@@ -603,7 +650,7 @@ namespace logistica.Pages.Admin
             {
                 RestClient client = new RestClient(ParametrosDL.ObtenerParametroURLWS());
 
-                RestRequest request = new RestRequest("api/usuarios/1,admin," + ddlParametros.SelectedValue, DataFormat.Json);
+                RestRequest request = new RestRequest("api/usuarios/1,admin," + ddlUsuarios.SelectedValue + "/", DataFormat.Json);
 
                 var res = client.Get<string>(request);
 
@@ -612,13 +659,13 @@ namespace logistica.Pages.Admin
                     case ResponseStatus.Completed:
                         if (res != null && !string.IsNullOrEmpty(res.Content))
                         {
-                            var param = JsonConvert.DeserializeObject<Dictionary<string, string>>(res.Content);
+                            var _usrVal = JsonConvert.DeserializeObject<Dictionary<string, object>>(res.Content);
 
-                            if (param != null)
+                            if (_usrVal != null)
                             {
-                                tipo.Value = param["0"];
-                                descripcion.Value = param["m_Item2"];
-                                valoractual.Value = param["m_Item3"];
+                                usralias.Value = _usrVal.Values.ElementAt(0).ToString();
+                                usractivo.Value = _usrVal.Values.ElementAt(1).ToString();
+                                usrrol.Value = _usrVal.Values.ElementAt(2).ToString();
                             }
 
                             valornuevo.Value = "";
@@ -626,9 +673,9 @@ namespace logistica.Pages.Admin
 
                         break;
                     case ResponseStatus.Error:
-                        tipo.Value = "";
-                        descripcion.Value = "";
-                        valoractual.Value = "";
+                        usralias.Value = "";
+                        usractivo.Value = "";
+                        usrrol.Value = "";
                         break;
                 }
             }

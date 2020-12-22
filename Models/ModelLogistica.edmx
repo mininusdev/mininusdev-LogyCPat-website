@@ -26,12 +26,17 @@
           <Property Name="esVisible" Type="bit" />
           <Property Name="esActivo" Type="bit" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CDLogisticaA.dbo.AspNetRoles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AspNetRoles">
           <Key>
+            <PropertyRef Name="Guid" />
+            <PropertyRef Name="Name" />
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
@@ -55,10 +60,9 @@
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="450" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -81,6 +85,7 @@
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="fechaModificacion" Type="datetime" />
           <Property Name="usuarioModificacion" Type="bigint" />
+          <Property Name="idRol" Type="bigint" />
         </EntityType>
         <EntityType Name="Catalogos">
           <Key>
@@ -759,34 +764,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Elemento01">
           <End Role="CatalogosElementos" Type="Self.CatalogosElementos" Multiplicity="1" />
           <End Role="CatalogosElementosExt" Type="Self.CatalogosElementosExt" Multiplicity="*" />
@@ -837,7 +814,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
         <EntityContainer Name="CDLogisticaAModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Aplicaciones" EntityType="Self.Aplicaciones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
@@ -868,6 +844,13 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <EntitySet Name="Sectores" EntityType="Self.Sectores" Schema="logistica" store:Type="Tables" />
           <EntitySet Name="Tarifas" EntityType="Self.Tarifas" Schema="logistica" store:Type="Tables" />
           <EntitySet Name="Unidades" EntityType="Self.Unidades" Schema="logistica" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AspNetRoles].[Guid] AS [Guid], 
+    [AspNetRoles].[Name] AS [Name], 
+    [AspNetRoles].[Id] AS [Id]
+    FROM [dbo].[AspNetRoles] AS [AspNetRoles]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vwActividadesPuerta" EntityType="Self.vwActividadesPuerta" store:Type="Views" store:Schema="logistica">
             <DefiningQuery>SELECT 
     [vwActividadesPuerta].[idActividad] AS [idActividad], 
@@ -927,14 +910,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
           <AssociationSet Name="FK_Elemento01" Association="Self.FK_Elemento01">
             <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
             <End Role="CatalogosElementosExt" EntitySet="CatalogosElementosExt" />
@@ -974,11 +949,14 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <FunctionImport Name="spPatios_DisponibilidadSectoresListadoHTML" ReturnType="Collection(CDLogisticaAModel.spPatios_DisponibilidadSectoresListadoHTML_Result)">
           <Parameter Name="IdPatio" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="spPuertas_ObtenerReporteGeneral" ReturnType="Collection(CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result)">
+          <Parameter Name="tipo" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="C__MigrationHistory" EntityType="CDLogisticaAModel.C__MigrationHistory" />
           <EntitySet Name="Aplicaciones" EntityType="CDLogisticaAModel.Aplicaciones" />
-          <EntitySet Name="AspNetRoles" EntityType="CDLogisticaAModel.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="CDLogisticaAModel.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="CDLogisticaAModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUserRoles" EntityType="CDLogisticaAModel.AspNetUserRoles" />
           <EntitySet Name="AspNetUsers" EntityType="CDLogisticaAModel.AspNetUsers" />
           <EntitySet Name="Catalogos" EntityType="CDLogisticaAModel.Catalogos" />
           <EntitySet Name="CatalogosElementos" EntityType="CDLogisticaAModel.CatalogosElementos" />
@@ -1006,6 +984,7 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <EntitySet Name="Sectores" EntityType="CDLogisticaAModel.Sectores" />
           <EntitySet Name="Tarifas" EntityType="CDLogisticaAModel.Tarifas" />
           <EntitySet Name="Unidades" EntityType="CDLogisticaAModel.Unidades" />
+          <EntitySet Name="AspNetRoles" EntityType="CDLogisticaAModel.AspNetRoles" />
           <EntitySet Name="vwActividadesPuerta" EntityType="CDLogisticaAModel.vwActividadesPuerta" />
           <EntitySet Name="vwPatiosCajones_status" EntityType="CDLogisticaAModel.vwPatiosCajones_status" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -1024,13 +1003,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
             <End Role="CatalogosElementos" EntitySet="CatalogosElementos" />
             <End Role="CatalogosElementosExt" EntitySet="CatalogosElementosExt" />
           </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="CDLogisticaAModel.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <FunctionImport Name="spPuertas_ObtenerReporteGeneral" ReturnType="Collection(CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result)">
-            <Parameter Name="tipo" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spCatalogoElementos_ObtenerListadoSimple_Result">
           <Property Type="Int64" Name="idElemento" Nullable="false" />
@@ -1089,6 +1061,18 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <Property Type="Int64" Name="valorAsociado" Nullable="true" />
           <Property Type="Int32" Name="NivelesDisponibles" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="spPuertas_ObtenerReporteGeneral_Result">
+          <Property Type="String" Name="tipoactividad" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tipounidad" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="modoasignacion" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tarifa" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="puerta" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nota" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="fechaactividad" Nullable="true" />
+          <Property Type="Decimal" Name="costonormal" Nullable="true" Precision="18" Scale="3" />
+          <Property Type="String" Name="usuarioregistro" Nullable="true" MaxLength="100" />
+        </ComplexType>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1109,14 +1093,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
           <Property Name="esVisible" Type="Boolean" />
           <Property Name="esActivo" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="CDLogisticaAModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
@@ -1139,6 +1115,13 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -1160,9 +1143,9 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="usuarioModificacion" Type="Int64" />
+          <Property Name="idRol" Type="Int64" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="CDLogisticaAModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetRoles" Relationship="CDLogisticaAModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Catalogos">
           <Key>
@@ -1747,6 +1730,16 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
           <Property Name="esVisible" Type="Boolean" Nullable="false" />
           <Property Name="idEstatus" Type="Int64" Nullable="false" />
         </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Guid" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Guid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="vwActividadesPuerta">
           <Key>
             <PropertyRef Name="idActividad" />
@@ -1853,22 +1846,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="CDLogisticaAModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
-          <End Type="CDLogisticaAModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
-        </Association>
-        <ComplexType Name="spPuertas_ObtenerReporteGeneral_Result">
-          <Property Type="String" Name="tipoactividad" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="tipounidad" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="modoasignacion" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="tarifa" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="puerta" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="nota" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="clave" Nullable="true" MaxLength="20" />
-          <Property Type="DateTime" Name="fechaactividad" Nullable="true" />
-          <Property Type="Decimal" Name="costonormal" Nullable="true" Precision="18" Scale="3" />
-          <Property Type="String" Name="usuarioregistro" Nullable="true" MaxLength="100" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1956,6 +1933,22 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spPuertas_ObtenerReporteGeneral" FunctionName="CDLogisticaAModel.Store.spPuertas_ObtenerReporteGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result">
+                <ScalarProperty Name="tipoactividad" ColumnName="tipoactividad" />
+                <ScalarProperty Name="tipounidad" ColumnName="tipounidad" />
+                <ScalarProperty Name="modoasignacion" ColumnName="modoasignacion" />
+                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+                <ScalarProperty Name="puerta" ColumnName="puerta" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fechaactividad" ColumnName="fechaactividad" />
+                <ScalarProperty Name="costonormal" ColumnName="costonormal" />
+                <ScalarProperty Name="usuarioregistro" ColumnName="usuarioregistro" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="CDLogisticaAModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1978,14 +1971,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetRoles">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
@@ -2005,9 +1990,18 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUserRoles">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
                 <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
                 <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
                 <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
@@ -2633,6 +2627,15 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CDLogisticaAModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vwActividadesPuerta">
             <EntityTypeMapping TypeName="CDLogisticaAModel.vwActividadesPuerta">
               <MappingFragment StoreEntitySet="vwActividadesPuerta">
@@ -2684,30 +2687,6 @@ advertencia 6002: La tabla o vista 'CDLogisticaA.logistica.vwPatiosCajones_statu
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CDLogisticaAModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="spPuertas_ObtenerReporteGeneral" FunctionName="CDLogisticaAModel.Store.spPuertas_ObtenerReporteGeneral">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CDLogisticaAModel.spPuertas_ObtenerReporteGeneral_Result">
-                <ScalarProperty Name="tipoactividad" ColumnName="tipoactividad" />
-                <ScalarProperty Name="tipounidad" ColumnName="tipounidad" />
-                <ScalarProperty Name="modoasignacion" ColumnName="modoasignacion" />
-                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
-                <ScalarProperty Name="puerta" ColumnName="puerta" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="fechaactividad" ColumnName="fechaactividad" />
-                <ScalarProperty Name="costonormal" ColumnName="costonormal" />
-                <ScalarProperty Name="usuarioregistro" ColumnName="usuarioregistro" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

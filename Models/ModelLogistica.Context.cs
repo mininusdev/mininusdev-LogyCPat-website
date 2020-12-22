@@ -29,9 +29,9 @@ namespace logistica.Models
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Aplicaciones> Aplicaciones { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Catalogos> Catalogos { get; set; }
         public virtual DbSet<CatalogosElementos> CatalogosElementos { get; set; }
@@ -59,6 +59,7 @@ namespace logistica.Models
         public virtual DbSet<Sectores> Sectores { get; set; }
         public virtual DbSet<Tarifas> Tarifas { get; set; }
         public virtual DbSet<Unidades> Unidades { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<vwActividadesPuerta> vwActividadesPuerta { get; set; }
         public virtual DbSet<vwPatiosCajones_status> vwPatiosCajones_status { get; set; }
     
